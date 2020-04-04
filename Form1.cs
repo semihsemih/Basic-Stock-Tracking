@@ -67,5 +67,15 @@ namespace StockTrackingDemo
 
             MessageBox.Show("Updated");
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value);
+            _productDal.Delete(id);
+
+            LoadProducts();
+
+            MessageBox.Show("Deleted!");
+        }
     }
 }

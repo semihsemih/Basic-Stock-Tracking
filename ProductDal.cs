@@ -76,5 +76,16 @@ namespace StockTrackingDemo
 
             _connection.Close();
         }
+
+        public void Delete(int id)
+        {
+            ConnectionControl();
+
+            SqlCommand command = new SqlCommand("Delete from Products where Id=@id", _connection);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+
+            _connection.Close();
+        }
     }
 }

@@ -45,6 +45,7 @@
             this.lblStockAmountUpdate = new System.Windows.Forms.Label();
             this.lblUnitPriceUpdate = new System.Windows.Forms.Label();
             this.tbxUnitPriceUpdate = new System.Windows.Forms.TextBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProduct)).BeginInit();
             this.gbxAdd.SuspendLayout();
             this.gbxUpdate.SuspendLayout();
@@ -57,7 +58,7 @@
             this.dgwProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgwProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwProduct.Location = new System.Drawing.Point(48, 55);
+            this.dgwProduct.Location = new System.Drawing.Point(48, 66);
             this.dgwProduct.Name = "dgwProduct";
             this.dgwProduct.ReadOnly = true;
             this.dgwProduct.Size = new System.Drawing.Size(694, 245);
@@ -214,11 +215,22 @@
             this.tbxUnitPriceUpdate.Size = new System.Drawing.Size(119, 21);
             this.tbxUnitPriceUpdate.TabIndex = 4;
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(623, 37);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(119, 23);
+            this.btnRemove.TabIndex = 9;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 553);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.gbxUpdate);
             this.Controls.Add(this.gbxAdd);
             this.Controls.Add(this.dgwProduct);
@@ -253,6 +265,7 @@
         private System.Windows.Forms.Label lblStockAmountUpdate;
         private System.Windows.Forms.Label lblUnitPriceUpdate;
         private System.Windows.Forms.TextBox tbxUnitPriceUpdate;
+        private System.Windows.Forms.Button btnRemove;
     }
 }
 
