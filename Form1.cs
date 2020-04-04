@@ -29,11 +29,6 @@ namespace StockTrackingDemo
             dgwProduct.DataSource = _productDal.GetAll();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _productDal.Add(new Product
@@ -46,6 +41,31 @@ namespace StockTrackingDemo
             LoadProducts();
 
             MessageBox.Show("Product Added!");
+        }
+
+        private void dgwProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tbxNameUpdate.Text = dgwProduct.CurrentRow.Cells[1].Value.ToString();
+            tbxUnitPriceUpdate.Text = dgwProduct.CurrentRow.Cells[2].Value.ToString();
+            tbxStockAmountUpdate.Text = dgwProduct.CurrentRow.Cells[3].Value.ToString();
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Product product = new Product
+            {
+                Id = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                Name = tbxNameUpdate.Text,
+                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text),
+                StockAmount = Convert.ToInt32(tbxStockAmountUpdate.Text)
+            };
+
+            _productDal.Update(product);
+            
+            LoadProducts();
+
+            MessageBox.Show("Updated");
         }
     }
 }
