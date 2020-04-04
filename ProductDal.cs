@@ -10,16 +10,14 @@ namespace StockTrackingDemo
 {
     public class ProductDal
     {
+        SqlConnection _connection = new SqlConnection(@"server=(localdb)\mssqllocaldb;initial catalog=ETrade;integrated security=true");
+
         public List<Product> GetAll()
         {
-            SqlConnection connection = new SqlConnection(@"server=(localdb)\mssqllocaldb;initial catalog=ETrade;integrated security=true");
-            if (connection.State == ConnectionState.Closed)
-            {
-                connection.Open();
-            }
+            ConnectionControl();
 
-            SqlCommand command = new SqlCommand("Select * from Products", connection);
-            
+            SqlCommand command = new SqlCommand("Select * from Products", _connection);
+
             SqlDataReader reader = command.ExecuteReader();
 
             List<Product> products = new List<Product>();
@@ -37,11 +35,32 @@ namespace StockTrackingDemo
                 products.Add(product);
             }
 
-            
+
             reader.Close();
-            connection.Close();
+            _connection.Close();
 
             return products;
+        }
+
+        private void ConnectionControl()
+        {
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+        }
+
+        public void Add(Product product)
+        {
+            ConnectionControl();
+
+            SqlCommand command = new SqlCommand("Insert into Products values(@name, @unitPrice, @stockAmount)", _connection);
+            command.Parameters.AddWithValue("@name", product.Name);
+            command.Parameters.AddWithValue("@unitPrice", product.UnitPrice);
+            command.Parameters.AddWithValue("@stockAmount", product.StockAmount);
+            command.ExecuteNonQuery();
+
+            _connection.Close();
         }
     }
 }
